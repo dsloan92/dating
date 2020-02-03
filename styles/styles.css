@@ -1,0 +1,15 @@
+.overline {
+    display: block;
+     border-top: 1px solid black;
+    padding-top: 5px;
+ }
+
+.underline {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+.quote {
+    font-style: italic ;
+    padding-left:  100px;
+}
