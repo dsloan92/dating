@@ -1,4 +1,12 @@
 <?php
+/*  Controller for Dating Website
+    Original Author:    Dallas Sloan
+    Last Modified by:   Dallas Sloan
+    Creation Date:      02/01/2020
+    Last Modified Date: 02/01/2020
+    Filename:           index.php
+*/
+
 
 //require auto-load file
 require ("vendor/autoload.php");
