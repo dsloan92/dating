@@ -29,8 +29,24 @@ $f3->route('GET /', function(){
 $f3->route('POST /info', function(){
     $view = new Template();
     echo $view->render('views/personalInfo.html');
-    echo "<h1>Hello Dating</h1>";
+    //echo "<h1>Hello Dating</h1>";
 });
+
+//Define a Profile Route
+$f3->route('POST /profile', function(){
+    $view = new Template();
+    echo $view->render('views/profile.html');
+    //echo "<h1>Hello Dating</h1>";
+});
+
+//Define a Interests Route
+$f3->route('POST /interests', function(){
+    $view = new Template();
+    echo $view->render('views/interests.html');
+    //echo "<h1>Hello Dating</h1>";
+});
+
+
 
 
 //Run F3

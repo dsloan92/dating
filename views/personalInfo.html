@@ -5,10 +5,67 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Personal Info</title>
 </head>
 <body>
-    <h1>Personal Info</h1>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/328/dating/">My Dating Website</a>
+</nav>
 
+<div class="container fullBorder mt-5">
+    <h2 class="underline mt-3">Personal Information</h2>
+    <div class="form-row">
+        <div class="form-group col-md-7">
+            <div class="form-group">
+                <label><h5>First Name</h5></label>
+                    <input type="text" class="form-control" name="first" id="first">
+            </div>
+
+            <div class="form-group">
+                <label><h5>Last Name</h5></label>
+                <input type="text" class="form-control" name="last" id="last">
+            </div>
+
+            <div class="form-group">
+                <label><h5>Age</h5></label>
+                <input type="text" class="form-control" name="age" id="age">
+            </div>
+
+            <div class ="form-group">
+                <h5 class="">Gender</h5>
+                <input class ="form-check-inline" type="radio" name="gender" id="male" value="male">
+                <label class ="form-check-inline" for="male">Male</label>
+                <input class ="form-check-inline" type="radio" name="gender" id="Female" value="female">
+                <label class ="form-check-label" for="Female">Female</label>
+            </div>
+
+            <div class="form-group">
+                <label><h5>Phone Number</h5></label>
+                <input type="text" class="form-control" name="number" id="number">
+            </div>
+        </div>
+
+        <div class="card bg-light mt-4 ml-4 col-md-4" style="max-height: 110px">
+            <p class = "card-text text-center"><strong>Note: </strong>All information entered is protected by our <span class="blue">privacy policy</span>.
+            Profile information can only be viewed by others with your permission.</p>
+        </div>
+
+    </div>
+    <!--Adding a button within a form -->
+    <div class="text-right mb-3">
+        <form method="post" action="profile">
+            <input class="btn btn-primary text-right" type="submit" id="personal" value="Next >">
+        </form>
+    </div>
+
+
+</div> <!--container div --->
+
+
+<script src="js/jquery.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

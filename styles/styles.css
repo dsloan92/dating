@@ -13,3 +13,15 @@
     font-style: italic ;
     padding-left:  100px;
 }
+
+.fullBorder{
+    border: 1px solid black;
+}
+
+.greybox{
+    background-color: grey;
+}
+
+.blue{
+    color: dodgerblue;
+}
