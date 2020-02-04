@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <title>Summary</title>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/328/dating/">My Dating Website</a>
+</nav>
+
+<div class="container fullBorder mt-5">
+    <form method="post" action="#">
+
+        <div class="form-row">
+            <div class="col-md-5 fullBorder mt-3 ml-2 mb-3">
+                <p class="underline">Name: {{ @SESSION['first'] }} {{ @SESSION['last'] }}</p>
+                <p class="underline">Gender: {{ @SESSION['gender'] }} </p>
+                <p class="underline">Age: {{ @SESSION['age'] }} </p>
+                <p class="underline">Phone: {{ @SESSION['number'] }}</p>
+                <p class="underline">Email: {{ @SESSION['email'] }}</p>
+                <p class="underline">State: {{ @SESSION['state'] }}</p>
+                <p class="underline">Seeking: {{ @SESSION['seeking'] }}</p>
+                <p class="underline">Interests: {{ implode(",", @SESSION.inDoor) }} {{ implode(",", @SESSION.outDoor)
+                    }}</p>
+            </div>
+            <div class="col-md-5">
+                <p class="mt-5 ml-2">Biography</p>
+                <div class="ml-2">
+                    <p class="ml-2">
+                        {{ @SESSION['biography'] }}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center mb-3">
+            <input class="btn btn-primary text-center" type="submit" id="summary" value="Contact Me!">
+        </div>
+
+    </form>
+</div>
+
+</div>
+
+
+</body>
+</html>

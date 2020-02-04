@@ -16,6 +16,8 @@
 </nav>
 
 <div class="container fullBorder mt-5">
+    <form method="post" action="interests">
+
     <h2 class="underline mt-3">Profile</h2>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -84,7 +86,7 @@
                 <h5 class="">Seeking</h5>
                 <input class ="form-check-inline" type="radio" name="seeking" id="male1" value="male">
                 <label class ="form-check-inline" for="male1">Male</label>
-                <input class ="form-check-inline" type="radio" name="gender" id="female1" value="female">
+                <input class ="form-check-inline" type="radio" name="seeking" id="female1" value="female">
                 <label class ="form-check-label" for="female1">Female</label>
             </div>
         </div>
@@ -95,10 +97,10 @@
     </div>
     <!--Adding a button within a form -->
     <div class="text-right mb-3">
-        <form method="post" action="interests">
             <input class="btn btn-primary text-right" type="submit" id="interests" value="Next >">
-        </form>
     </div>
+    </form>
+
 
 </div>
 
