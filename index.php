@@ -25,6 +25,14 @@ $f3->route('GET /', function(){
     //echo "<h1>Hello Dating</h1>";
 });
 
+//Define a Personal Information Route
+$f3->route('POST /info', function(){
+    $view = new Template();
+    echo $view->render('views/personalInfo.html');
+    echo "<h1>Hello Dating</h1>";
+});
+
+
 //Run F3
 $f3->run();
 
