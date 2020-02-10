@@ -100,10 +100,14 @@ $f3->route('POST|GET /profile', function($f3){
 
 //Define a Interests Route
 $f3->route('POST|GET /interests', function(){
-    $_SESSION['email']=$_POST['email'];
-    $_SESSION['state']=$_POST['state'];
-    $_SESSION['seeking']=$_POST['seeking'];
-    $_SESSION['biography']=$_POST['biography'];
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //grabbing data from form
+    }
+        /*$_SESSION['email']=$_POST['email'];
+        $_SESSION['state']=$_POST['state'];
+        $_SESSION['seeking']=$_POST['seeking'];
+        $_SESSION['biography']=$_POST['biography'];*/
 
     $view = new Template();
     echo $view->render('views/interests.html');
