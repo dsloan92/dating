@@ -18,12 +18,28 @@
 </nav>
 
 <div class="container fullBorder mt-5">
-    <form method="post" action="summary">
+    <form method="post" action="#">
 
     <h2 class="underline mt-3">Interests</h2>
     <p><h5>In-door Interests</h5></p>
+        <check if="{{ @errors['selectedInDoorOptions'] }}">
+            <span class="err-validate">{{ @errors['selectedInDoorOptions'] }}</span>
+        </check>
 
-    <div class="form-row">
+
+        <div class="form-row">
+
+            <repeat group="{{ @inDoorOptions }}" value = "{{ @inDoorOption }}">
+                <div class ="form-check-inline col-md-2">
+                <label><input type = "checkbox" name="inDoor[]" value="{{ @inDoorOption }}"
+                    <check if="{{ isset(@selectedInDoorOptions) && in_array(@inDoorOption, @selectedInDoorOptions) }}">
+                        checked = "checked"
+                    </check>
+                        >{{ @inDoorOption }}
+                </label><br>
+                </div>
+            </repeat>
+<!--
         <div class="form-group col-md-3">
             <div class="form-group">
                 <div class="form-check ml-3">
@@ -89,64 +105,82 @@
             </div>
         </div>
 
+-->
     </div>
 
     <p><h5>Out-door Interests</h5></p>
+        <check if="{{ @errors['selectedOutDoorOptions'] }}">
+            <span class="err-validate">{{ @errors['selectedOutDoorOptions'] }}</span>
+        </check>
 
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <div class="form-group">
-                <div class="form-check ml-3">
-                    <input class="form-check-input" name ="outDoor[]" type="checkbox" value="hiking" id="hiking">
-                    <label class="form-check-label" for="hiking">
-                        hiking
-                    </label>
-                </div>
-                <div class="form-check ml-3">
-                    <input class="form-check-input" name ="outDoor[]" type="checkbox" value="walking" id="walking">
-                    <label class="form-check-label" for="walking">
-                        walking
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" name ="outDoor[]" type="checkbox" value="biking" id="biking">
-                    <label class="form-check-label" for="biking">
-                        biking
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" name ="outDoor[]" type="checkbox" value="climbing" id="climbing">
-                    <label class="form-check-label" for="climbing">
-                        climbing
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" name ="outDoor[]" type="checkbox" value="swimming" id="swimming">
-                    <label class="form-check-label" for="swimming">
-                        swimming
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" name ="outDoor[]" type="checkbox" value="collecting" id="collecting">
-                    <label class="form-check-label" for="collecting">
-                        collecting
-                    </label>
-                </div>
-            </div>
-        </div>
 
+        <div class="form-row">
+            <repeat group="{{ @outDoorOptions }}" value = "{{ @outDoorOption }}">
+                <div class ="form-check-inline col-md-2">
+                    <label><input type = "checkbox" name="outDoor[]" value="{{ @outDoorOption }}"
+                        <check if="{{ isset(@selectedOutDoorOptions) && in_array(@outDoorOption, @selectedOutDoorOptions) }}">
+                            checked = "checked"
+                        </check>
+                        >{{ @outDoorOption }}
+                    </label><br>
+                </div>
+            </repeat>
+
+            <!--
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            <div class="form-check ml-3">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="hiking" id="hiking">
+                                <label class="form-check-label" for="hiking">
+                                    hiking
+                                </label>
+                            </div>
+                            <div class="form-check ml-3">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="walking" id="walking">
+                                <label class="form-check-label" for="walking">
+                                    walking
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="biking" id="biking">
+                                <label class="form-check-label" for="biking">
+                                    biking
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="climbing" id="climbing">
+                                <label class="form-check-label" for="climbing">
+                                    climbing
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="swimming" id="swimming">
+                                <label class="form-check-label" for="swimming">
+                                    swimming
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="collecting" id="collecting">
+                                <label class="form-check-label" for="collecting">
+                                    collecting
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+            -->
     </div>
     <!--Adding a button within a form -->
     <div class="text-right mb-3">

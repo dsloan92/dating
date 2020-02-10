@@ -57,7 +57,7 @@ function validateInterestForm(){
 
     if (!validInDoor($f3->get('selectedInDoorOptions'))){
         $isValid = false;
-        $f3->set("errors['selectedIntDoorOptions']", "Please choose valid InDoor Options");
+        $f3->set("errors['selectedInDoorOptions']", "Please choose valid InDoor Options");
     }
 
     return $isValid;
@@ -101,20 +101,28 @@ function validEmail($email)
 //validate out door checkbox
 function validOutDoor($selectedOutDoorOptions){
     global $outDoorOptions;
-    foreach ($selectedOutDoorOptions as $value){
-        if(!in_array($value, $outDoorOptions)){
-            return false;
+    if (isset($selectedOutDoorOptions)) {
+
+        foreach ($selectedOutDoorOptions as $value) {
+            if (in_array($value, $outDoorOptions)) {
+                return false;
+            }
         }
     }
+    return true;
 }
 
 //validate inDoor checkbox
 function validInDoor($selectedInDoorOptions){
     global $inDoorOptions;
-    foreach ($selectedInDoorOptions as $value){
-        if(!in_array($value, $inDoorOptions)){
-            return false;
+    if (isset($selectedInDoorOptions)) {
+
+        foreach ($selectedInDoorOptions as $value) {
+            if (in_array($value, $inDoorOptions)) {
+                return false;
+            }
         }
     }
+    return true;
 }
 

@@ -21,6 +21,12 @@ error_reporting(E_ALL);
 //Create an instance of the base class
 $f3 = Base::instance();
 
+//defining arrays
+$f3->set('inDoorOptions', array('tv', 'movies', 'playing cards', 'video games', 'puzzles', 'reading', 'board games', 'cooking'));
+$f3->set('outDoorOptions', array('hiking', 'biking', 'swimming', 'collecting', 'walking', 'climbing'));
+$outDoorOptions =  array('tv', 'movies', 'playing cards', 'video games', 'puzzles', 'reading', 'board games', 'cooking');
+$inDoorOptions= array('hiking', 'biking', 'swimming', 'collecting', 'walking', 'climbing');
+
 //Define a default route
 $f3->route('GET /', function(){
     $view = new Template();
@@ -53,6 +59,8 @@ $f3->route('GET|POST /info', function($f3){
             $_SESSION['last']=$last;
             $_SESSION['age']=$age;
             $_SESSION['phone']=$phone;
+            $_SESSION['gender']=$_POST['gender'];
+
 
             //redirect to profile page
             $f3->reroute('/profile');
@@ -79,6 +87,10 @@ $f3->route('POST|GET /profile', function($f3){
         if (validateProfileForm()){
             //write data to session
             $_SESSION['email'] = $email;
+            $_SESSION['state']=$_POST['state'];
+            $_SESSION['seeking']=$_POST['seeking'];
+            $_SESSION['biography']=$_POST['biography'];
+
 
             //redirect to interests page
             $f3->reroute('/interests');
@@ -92,6 +104,7 @@ $f3->route('POST|GET /profile', function($f3){
         $_SESSION['gender']=$_POST['gender'];
         $_SESSION['number']=$_POST['number'];*/
 
+
     $view = new Template();
 
     echo $view->render('views/profile.html');
@@ -99,10 +112,31 @@ $f3->route('POST|GET /profile', function($f3){
 });
 
 //Define a Interests Route
-$f3->route('POST|GET /interests', function(){
+$f3->route('POST|GET /interests', function($f3){
+    $selectedInDoorOptions = array();
+    $selectedOutDoorOptions = array();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         //grabbing data from form
+        if(!empty($_POST['inDoor'])){
+            $selectedInDoorOptions = $_POST['inDoor'];
+        }
+        if(!empty($_POST['outDoor'])){
+            $selectedOutDoorOptions = $_POST['outDoor'];
+        }
+
+        //add data to hive
+        $f3->set('selectedInDoorOptions', $selectedInDoorOptions);
+        $f3->set('selectedOutDoorOptions', $selectedOutDoorOptions);
+
+        //validate the form
+        if (validateInterestForm()){
+            //write data to session
+            $_SESSION['inDoor']=$selectedInDoorOptions;
+            $_SESSION['outDoor']=$selectedOutDoorOptions;
+
+            $f3->reroute('/summary');
+        }
     }
         /*$_SESSION['email']=$_POST['email'];
         $_SESSION['state']=$_POST['state'];
@@ -115,9 +149,9 @@ $f3->route('POST|GET /interests', function(){
 });
 
 //Define a Summary Route
-$f3->route('POST /summary', function(){
-    $_SESSION['inDoor']=$_POST['inDoor'];
-    $_SESSION['outDoor']=$_POST['outDoor'];
+$f3->route('POST|GET /summary', function(){
+/*    $_SESSION['inDoor']=$_POST['inDoor'];
+    $_SESSION['outDoor']=$_POST['outDoor'];*/
 
     $view = new Template();
     echo $view->render('views/summary.html');
