@@ -20,21 +20,23 @@
 
         <div class="form-row">
             <div class="col-md-5 fullBorder mt-3 ml-2 mb-3">
-                <p class="underline">Name: {{ @SESSION['first'] }} {{ @SESSION['last'] }}</p>
-                <p class="underline">Gender: {{ @SESSION['gender'] }} </p>
-                <p class="underline">Age: {{ @SESSION['age'] }} </p>
-                <p class="underline">Phone: {{ @SESSION['phone'] }}</p>
-                <p class="underline">Email: {{ @SESSION['email'] }}</p>
-                <p class="underline">State: {{ @SESSION['state'] }}</p>
-                <p class="underline">Seeking: {{ @SESSION['seeking'] }}</p>
+                <p class="underline">Name: {{ @member->getFname() }} {{ @member->getLname() }}</p>
+                <p class="underline">Gender: {{ @member->getGender() }} </p>
+                <p class="underline">Age: {{ @member->getAge() }} </p>
+                <p class="underline">Phone: {{ @member->getPhone() }}</p>
+                <p class="underline">Email: {{ @member->getEmail() }}</p>
+                <p class="underline">State: {{ @member->getState() }}</p>
+                <p class="underline">Seeking: {{ @member->getSeeking() }}</p>
+                <check if="{{ (is_a($member, 'PremiumMember')) }}">
                 <p class="underline">Interests: {{ implode(",", @SESSION.inDoor) }} {{ implode(",", @SESSION.outDoor)
                     }}</p>
+                </check>
             </div>
             <div class="col-md-5">
                 <p class="mt-5 ml-2">Biography</p>
                 <div class="ml-2">
                     <p class="ml-2">
-                        {{ @SESSION['biography'] }}
+                        {{ @member->getBio() }}
                     </p>
                 </div>
             </div>

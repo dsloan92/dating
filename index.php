@@ -14,6 +14,7 @@ require_once("model/validation.php");
 
 //start a session
 session_start();
+//session_destroy();
 
 
 //Turn on error reporting -- this is critical!
@@ -31,6 +32,7 @@ $inDoorOptions= array('hiking', 'biking', 'swimming', 'collecting', 'walking', '
 
 //Define a default route
 $f3->route('GET /', function(){
+    session_destroy();
     $view = new Template();
     echo $view->render('views/home.html');
     //echo "<h1>Hello Dating</h1>";
@@ -38,7 +40,6 @@ $f3->route('GET /', function(){
 
 //Define a Personal Information Route
 $f3->route('GET|POST /info', function($f3){
-    //session_destroy();
     //Checking to see if form has been submitted
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         var_dump($_POST);
@@ -107,7 +108,9 @@ $f3->route('POST|GET /profile', function($f3){
         //checking to ensure form is valid
         if (validateProfileForm()){
             //write additional info to member object
-            $member->setEmail($email);
+            if (isset($_POST['email'])) {
+               $member->setEmail($email);
+            }
 
             if(isset($_POST['state'])){
                 $member->setState($_POST['state']);
@@ -155,12 +158,12 @@ $f3->route('POST|GET /profile', function($f3){
 
 //Define a Interests Route
 $f3->route('POST|GET /interests', function($f3){
+    //pulling member object from session
+    $member = $_SESSION['member'];
     $selectedInDoorOptions = array();
     $selectedOutDoorOptions = array();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //pulling member object from session
-        $member = $_SESSION['member'];
         //grabbing data from form
         if(!empty($_POST['inDoor'])){
             $selectedInDoorOptions = $_POST['inDoor'];
@@ -203,9 +206,11 @@ $f3->route('POST|GET /interests', function($f3){
 });
 
 //Define a Summary Route
-$f3->route('POST|GET /summary', function(){
+$f3->route('POST|GET /summary', function($f3){
 /*    $_SESSION['inDoor']=$_POST['inDoor'];
     $_SESSION['outDoor']=$_POST['outDoor'];*/
+    $member = $_SESSION['member'];
+    $f3->set('member', $member);
 
     $view = new Template();
     echo $view->render('views/summary.html');
