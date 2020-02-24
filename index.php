@@ -38,15 +38,20 @@ $f3->route('GET /', function(){
 
 //Define a Personal Information Route
 $f3->route('GET|POST /info', function($f3){
+    //session_destroy();
     //Checking to see if form has been submitted
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        //var_dump($_POST);
+        var_dump($_POST);
 
         //grabbing data from form
         $first = $_POST['first'];
         $last = $_POST['last'];
         $age = $_POST['age'];
         $phone = $_POST['number'];
+        if (isset($_POST['premium'])){
+            $premium = $_POST['premium'];
+        }
+        $gender = $_POST['gender'];
 
         //adding data to hive
         $f3->set('first', $first);
@@ -56,12 +61,20 @@ $f3->route('GET|POST /info', function($f3){
 
         //check if form is valid
         if (validInfoForm()){
-            //write data to session
+            //Instantiate new member object
+            if (isset($_POST['premium'])){
+                $member = new PremiumMember($first, $last, $age, $gender, $phone);
+            }
+            else{
+                $member = new Member($first, $last, $age, $gender, $phone);
+            }
+            /*//write data to session
             $_SESSION['first']=$first;
             $_SESSION['last']=$last;
             $_SESSION['age']=$age;
             $_SESSION['phone']=$phone;
-            $_SESSION['gender']=$_POST['gender'];
+            $_SESSION['gender']=$_POST['gender'];*/
+            $_SESSION['member'] = $member;
 
 
             //redirect to profile page
@@ -77,25 +90,52 @@ $f3->route('GET|POST /info', function($f3){
 
 //Define a Profile Route
 $f3->route('POST|GET /profile', function($f3){
-    echo $_SERVER['REQUEST_METHOD'];
+    //echo $_SERVER['REQUEST_METHOD'];
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        //pulling object from session
+        $member = $_SESSION['member'];
+        //var_dump($member);
+
         //grabbing data from form
         $email = $_POST['email'];
 
         //adding to hive
         $f3->set('email', $email);
+        //print_r($member);
+        //var_dump($_POST);
 
         //checking to ensure form is valid
         if (validateProfileForm()){
-            //write data to session
+            //write additional info to member object
+            $member->setEmail($email);
+
+            if(isset($_POST['state'])){
+                $member->setState($_POST['state']);
+            }
+            if(isset($_POST['seeking'])){
+                $member->setSeeking($_POST['seeking']);
+            }
+            if(isset($_POST['biography'])){
+                $member->setBio($_POST['biography']);
+            }
+
+           /* //write data to session
             $_SESSION['email'] = $email;
             $_SESSION['state']=$_POST['state'];
             $_SESSION['seeking']=$_POST['seeking'];
-            $_SESSION['biography']=$_POST['biography'];
+            $_SESSION['biography']=$_POST['biography'];*/
+
+           //save object back to session
+            $_SESSION['member'] = $member;
 
 
-            //redirect to interests page
-            $f3->reroute('/interests');
+            //redirect to interests page if premium member
+            if (is_a($member, 'PremiumMember')) {
+                $f3->reroute('/interests');
+            }
+            else{
+                $f3->reroute('/summary');
+            }
         }
     }
 
@@ -119,6 +159,8 @@ $f3->route('POST|GET /interests', function($f3){
     $selectedOutDoorOptions = array();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //pulling member object from session
+        $member = $_SESSION['member'];
         //grabbing data from form
         if(!empty($_POST['inDoor'])){
             $selectedInDoorOptions = $_POST['inDoor'];
@@ -133,9 +175,19 @@ $f3->route('POST|GET /interests', function($f3){
 
         //validate the form
         if (validateInterestForm()){
-            //write data to session
+            //setting information to object
+            if (isset($selectedInDoorOptions)){
+                $member->setInDoorInterests($selectedInDoorOptions);
+            }
+            if (isset($selectedOutDoorOptions)){
+                $member->setOutDoorInterests($selectedOutDoorOptions);
+            }
+            /*//write data to session
             $_SESSION['inDoor']=$selectedInDoorOptions;
-            $_SESSION['outDoor']=$selectedOutDoorOptions;
+            $_SESSION['outDoor']=$selectedOutDoorOptions;*/
+
+            //place object back into session
+            $_SESSION['member'] = $member;
 
             $f3->reroute('/summary');
         }
