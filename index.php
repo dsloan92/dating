@@ -7,12 +7,14 @@
     Filename:           index.php
 */
 
-//start a session
-session_start();
 //require auto-load file
 
 require_once ("vendor/autoload.php");
 require_once("model/validation.php");
+
+//start a session
+session_start();
+
 
 //Turn on error reporting -- this is critical!
 ini_set('display_errors', 1);
