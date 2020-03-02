@@ -23,6 +23,7 @@ error_reporting(E_ALL);
 
 //Create an instance of the base class
 $f3 = Base::instance();
+$db = new Database();
 
 //defining arrays
 $f3->set('inDoorOptions', array('tv', 'movies', 'playing cards', 'video games', 'puzzles', 'reading', 'board games', 'cooking'));
@@ -137,6 +138,8 @@ $f3->route('POST|GET /profile', function($f3){
                 $f3->reroute('/interests');
             }
             else{
+                var_dump($member);
+                $GLOBALS['db']->insertMember($member);
                 $f3->reroute('/summary');
             }
         }

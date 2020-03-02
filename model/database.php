@@ -52,13 +52,13 @@ class Database
 
     }
 
-    function insertMembers($member)
+    function insertMember($member)
     {
-        //var_dump($student);
+        var_dump($member);
 
         //1. Define the query
-        $sql = "INSERT INTO member (fname, lname, age, gender, phone, email, state, seeking, bio, premium)
-                VALUES(:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium)";
+        $sql = "INSERT INTO member (fname, lname, age, gender, phone, email, state, seeking, bio)
+                VALUES(:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio)";
 
         //2.prepare the statement (compiles)
         $statement = $this->_dbh->prepare($sql);
@@ -73,7 +73,7 @@ class Database
         $statement->bindParam(':state', $member->getState());
         $statement->bindParam(':seeking', $member->getSeeking());
         $statement->bindParam(':bio', $member->getBio());
-        $statement->bindParam(':premium', $member->getPremium());
+        //$statement->bindParam(':premium', $member->getPremium());
 
         //4. Execute the statement
         $statement->execute();
