@@ -29,6 +29,7 @@
 
         <div class="form-row">
 
+<!--
             <repeat group="{{ @inDoorOptions }}" value = "{{ @inDoorOption }}">
                 <div class ="form-check-inline col-md-2">
                 <label><input type = "checkbox" name="inDoor[]" value="{{ @inDoorOption }}"
@@ -39,17 +40,18 @@
                 </label><br>
                 </div>
             </repeat>
-<!--
+-->
+
         <div class="form-group col-md-3">
             <div class="form-group">
                 <div class="form-check ml-3">
-                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="tv" id="tv">
+                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="1" id="tv">
                     <label class="form-check-label" for="tv">
                         tv
                     </label>
                 </div>
                 <div class="form-check ml-3">
-                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="puzzles" id="puzzles">
+                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="2" id="puzzles">
                     <label class="form-check-label" for="puzzles">
                         puzzles
                     </label>
@@ -59,13 +61,13 @@
         <div class="form-group col-md-3">
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="movies" id="movies">
+                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="3" id="movies">
                     <label class="form-check-label" for="movies">
                         movies
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="reading" id="reading">
+                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="4" id="reading">
                     <label class="form-check-label" for="reading">
                         reading
                     </label>
@@ -75,13 +77,13 @@
         <div class="form-group col-md-3">
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="playing cards" id="cards">
+                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="5" id="cards">
                     <label class="form-check-label" for="cards">
                         playing cards
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name ="inDoor[]"type="checkbox" value="board games" id="board">
+                    <input class="form-check-input" name ="inDoor[]"type="checkbox" value="6" id="board">
                     <label class="form-check-label" for="board">
                         board games
                     </label>
@@ -91,13 +93,13 @@
         <div class="form-group col-md-3">
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="video games" id="video">
+                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="7" id="video">
                     <label class="form-check-label" for="video">
                         video games
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="cooking" id="cooking">
+                    <input class="form-check-input" name ="inDoor[]" type="checkbox" value="8" id="cooking">
                     <label class="form-check-label" for="cooking">
                         cooking
                     </label>
@@ -105,16 +107,19 @@
             </div>
         </div>
 
--->
+
     </div>
 
+<!--
     <p><h5>Out-door Interests</h5></p>
         <check if="{{ @errors['selectedOutDoorOptions'] }}">
             <span class="err-validate">{{ @errors['selectedOutDoorOptions'] }}</span>
         </check>
+        -->
 
 
         <div class="form-row">
+            <!--
             <repeat group="{{ @outDoorOptions }}" value = "{{ @outDoorOption }}">
                 <div class ="form-check-inline col-md-2">
                     <label><input type = "checkbox" name="outDoor[]" value="{{ @outDoorOption }}"
@@ -125,18 +130,19 @@
                     </label><br>
                 </div>
             </repeat>
+-->
 
-            <!--
+
                     <div class="form-group col-md-3">
                         <div class="form-group">
                             <div class="form-check ml-3">
-                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="hiking" id="hiking">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="9" id="hiking">
                                 <label class="form-check-label" for="hiking">
                                     hiking
                                 </label>
                             </div>
                             <div class="form-check ml-3">
-                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="walking" id="walking">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="10" id="walking">
                                 <label class="form-check-label" for="walking">
                                     walking
                                 </label>
@@ -146,13 +152,13 @@
                     <div class="form-group col-md-3">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="biking" id="biking">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="11" id="biking">
                                 <label class="form-check-label" for="biking">
                                     biking
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="climbing" id="climbing">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="12" id="climbing">
                                 <label class="form-check-label" for="climbing">
                                     climbing
                                 </label>
@@ -162,7 +168,7 @@
                     <div class="form-group col-md-3">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="swimming" id="swimming">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="13" id="swimming">
                                 <label class="form-check-label" for="swimming">
                                     swimming
                                 </label>
@@ -172,15 +178,13 @@
                     <div class="form-group col-md-3">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="collecting" id="collecting">
+                                <input class="form-check-input" name ="outDoor[]" type="checkbox" value="14" id="collecting">
                                 <label class="form-check-label" for="collecting">
                                     collecting
                                 </label>
                             </div>
                         </div>
                     </div>
-
-            -->
     </div>
     <!--Adding a button within a form -->
     <div class="text-right mb-3">

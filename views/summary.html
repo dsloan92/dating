@@ -16,7 +16,6 @@
 </nav>
 
 <div class="container fullBorder mt-5">
-    <form method="post" action="#">
 
         <div class="form-row">
             <div class="col-md-5 fullBorder mt-3 ml-2 mb-3">
@@ -27,8 +26,8 @@
                 <p class="underline">Email: {{ @member->getEmail() }}</p>
                 <p class="underline">State: {{ @member->getState() }}</p>
                 <p class="underline">Seeking: {{ @member->getSeeking() }}</p>
-                <check if="{{ (is_a($member, 'PremiumMember')) }}">
-                <p class="underline">Interests: {{ implode(",", @SESSION.inDoor) }} {{ implode(",", @SESSION.outDoor)
+                <check if="{{ (is_a(@member, 'PremiumMember')) }}">
+                <p class="underline">Interests: {{ implode(",", @member->getInDoorInterests()) }} {{ implode(",", @member->getOutDoorInterests())
                     }}</p>
                 </check>
             </div>
@@ -42,7 +41,9 @@
             </div>
 
         </div>
-        <div class="text-center mb-3">
+    <form method="post" action="#">
+
+    <div class="text-center mb-3">
             <input class="btn btn-primary text-center" type="submit" id="summary" value="Contact Me!">
         </div>
 

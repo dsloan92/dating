@@ -160,6 +160,8 @@ $f3->route('POST|GET /profile', function($f3){
 $f3->route('POST|GET /interests', function($f3){
     //pulling member object from session
     $member = $_SESSION['member'];
+    var_dump($member);
+
     $selectedInDoorOptions = array();
     $selectedOutDoorOptions = array();
 
@@ -210,6 +212,7 @@ $f3->route('POST|GET /summary', function($f3){
 /*    $_SESSION['inDoor']=$_POST['inDoor'];
     $_SESSION['outDoor']=$_POST['outDoor'];*/
     $member = $_SESSION['member'];
+    var_dump($member);
     $f3->set('member', $member);
 
     $view = new Template();
