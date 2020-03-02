@@ -54,11 +54,10 @@ class Database
 
     function insertMember($member)
     {
-        var_dump($member);
 
         //1. Define the query
-        $sql = "INSERT INTO member (fname, lname, age, gender, phone, email, state, seeking, bio)
-                VALUES(:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio)";
+        $sql = "INSERT INTO member (fname, lname, age, gender, phone, email, state, seeking, bio, premium)
+                VALUES(:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium)";
 
         //2.prepare the statement (compiles)
         $statement = $this->_dbh->prepare($sql);
@@ -67,19 +66,20 @@ class Database
         $statement->bindParam(':fname', $member->getFname());
         $statement->bindParam(':lname', $member->getLname());
         $statement->bindParam(':age', $member->getAge());
-        $statement->bindParam(':gender', $member->getMember());
+        $statement->bindParam(':gender', $member->getGender());
         $statement->bindParam(':phone', $member->getPhone());
         $statement->bindParam(':email', $member->getEmail());
         $statement->bindParam(':state', $member->getState());
         $statement->bindParam(':seeking', $member->getSeeking());
         $statement->bindParam(':bio', $member->getBio());
-        //$statement->bindParam(':premium', $member->getPremium());
+        $statement->bindParam(':premium', $member->getPremium());
 
         //4. Execute the statement
         $statement->execute();
 
         //Get the key of the last inserted row
         $id = $this->_dbh->lastInsertId();
+        return $id;
 
 
     }
@@ -145,6 +145,20 @@ class Database
         //5. Get the result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+
+
+    }
+
+    function newInterest($member_id, $interest_id){
+        $sql = "Insert INTO member_interest
+                VALUES (:memberID, :interestID)";
+
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam('memberID', $member_id);
+        $statement->bindParam('interestID', $interest_id);
+
+        $statement->execute();
 
 
     }

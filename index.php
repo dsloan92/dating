@@ -135,10 +135,14 @@ $f3->route('POST|GET /profile', function($f3){
 
             //redirect to interests page if premium member
             if (is_a($member, 'PremiumMember')) {
+                $member->setPremium(1);
+                $_SESSION['member'] = $member;
                 $f3->reroute('/interests');
             }
             else{
                 var_dump($member);
+                $member->setPremium(0);
+                $_SESSION['member'] = $member;
                 $GLOBALS['db']->insertMember($member);
                 $f3->reroute('/summary');
             }
@@ -196,6 +200,15 @@ $f3->route('POST|GET /interests', function($f3){
 
             //place object back into session
             $_SESSION['member'] = $member;
+
+            $id = $GLOBALS['db']->insertMember($member);
+            foreach ($member->getInDoorInterests() as $interest){
+                $GLOBALS['db']->newInterest($id, $interest);
+            }
+            foreach ($member->getOutDoorInterests() as $interest){
+                $GLOBALS['db']->newInterest($id, $interest);
+            }
+
 
             $f3->reroute('/summary');
         }
