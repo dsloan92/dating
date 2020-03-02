@@ -11,6 +11,7 @@ class Member
     private $_state;
     private $_seeking;
     private $_bio;
+    private $_premium;
 
     //constructor
     function __construct($fname, $lname, $age, $gender, $phone)
@@ -110,6 +111,15 @@ class Member
     function getBio()
     {
         return $this->_bio;
+    }
+    function getPremium()
+    {
+        return $this->_premium;
+    }
+
+    function setPremium($premium)
+    {
+        $this->_premium = $premium;
     }
 
 
